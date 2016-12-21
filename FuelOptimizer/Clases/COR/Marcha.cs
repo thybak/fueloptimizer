@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FuelOptimizer.Clases
+namespace FuelOptimizer.Clases.COR
 {
-    public class Tramo
+    public class Marcha
     {
+        public int NumMarcha { get; set; }
         public int MinVelocidad { get; set; }
         public int MaxVelocidad { get; set; }
     }

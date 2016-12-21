@@ -58,9 +58,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clases\CocheCromosoma.cs" />
-    <Compile Include="Clases\CocheGen.cs" />
-    <Compile Include="Clases\Tramo.cs" />
+    <Compile Include="Clases\COR\Circuito.cs" />
+    <Compile Include="Clases\GEN\CocheCromosoma.cs" />
+    <Compile Include="Clases\GEN\CocheGen.cs" />
+    <Compile Include="Clases\COR\Marcha.cs" />
+    <Compile Include="Clases\COR\Tramo.cs" />
+    <Compile Include="Clases\COR\EspecificacionCoche.cs" />
+    <Compile Include="Clases\GEN\CochePoblacion.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

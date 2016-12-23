@@ -12,13 +12,22 @@ namespace Tests
         public void pruebaGen()
         {
             var gen = new CocheGen();
-            gen.CreateNew(Circuito.Current.Tramos[0], 0);
+            gen.Generate(Circuito.Current.Tramos[0]);
         }
 
         [TestMethod]
         public void pruebaCromosomaVacio()
         {
             var cromosoma = new CocheCromosoma();
+        }
+
+
+        [TestMethod]
+        public void pruebaCromosomaAleatorio()
+        {
+            var cromosoma = new CocheCromosoma();
+            cromosoma.Generate();
+            Console.WriteLine(cromosoma);
         }
     }
 }

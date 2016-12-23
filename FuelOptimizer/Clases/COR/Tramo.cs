@@ -8,6 +8,7 @@ namespace FuelOptimizer.Clases.COR
 {
     public class Tramo
     {
+        public int ID { get; set; }
         public int Longitud { get; set; }
         public int MinVelocidad { get; set; }
         public int MaxVelocidad { get; set; }

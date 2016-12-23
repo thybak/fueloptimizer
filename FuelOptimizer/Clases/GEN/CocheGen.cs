@@ -12,7 +12,7 @@ namespace FuelOptimizer.Clases.GEN
     {
         public int Velocidad { get; set; }
         public int MarchaActual { get; set; }
-        public double ConsumoAcumulado { get; set; }
+        public double ConsumoActual { get; set; }
         public int TramoAsociado { get; set; }
 
         public CocheGen()
@@ -32,7 +32,7 @@ namespace FuelOptimizer.Clases.GEN
         {
             get
             {
-                return 3;
+                return 4;
             }
         }
 
@@ -40,7 +40,7 @@ namespace FuelOptimizer.Clases.GEN
         {
             get
             {
-                return 3;
+                return 4;
             }
         }
 
@@ -51,7 +51,15 @@ namespace FuelOptimizer.Clases.GEN
 
         public void Generate()
         {
-            throw new NotImplementedException();
+            this.Generate(Circuito.Current.Tramos[0]);
+        }
+
+        public void Generate(Tramo tramo)
+        {
+            Velocidad = new Random(Guid.NewGuid().GetHashCode()).Next(tramo.MinVelocidad, tramo.MaxVelocidad);
+            MarchaActual = EspecificacionCoche.Current.getMarcha(Velocidad);
+            ConsumoActual = EspecificacionCoche.Current.getConsumo(MarchaActual, Velocidad);
+            TramoAsociado = tramo.ID;
         }
 
         public void Generate(GPGeneType type)
@@ -69,14 +77,9 @@ namespace FuelOptimizer.Clases.GEN
             return this;
         }
 
-        public IGPGene CreateNew(Tramo tramo, int tramoIndex)
+        public override string ToString()
         {
-            var gen = this.CreateNew() as CocheGen;
-            gen.Velocidad = new Random().Next(tramo.MinVelocidad, tramo.MaxVelocidad);
-            gen.MarchaActual = EspecificacionCoche.Current.getMarcha(gen.Velocidad);
-            gen.ConsumoAcumulado = EspecificacionCoche.Current.getConsumo(gen.MarchaActual, gen.Velocidad);
-            gen.TramoAsociado = tramoIndex;
-            return gen;
+            return string.Format("Velocidad: {0}\nMarcha: {1}\nConsumo del subtramo: {2}\nÍndice del tramo asociado: {3} ", Velocidad, MarchaActual, ConsumoActual, TramoAsociado);
         }
     }
 }

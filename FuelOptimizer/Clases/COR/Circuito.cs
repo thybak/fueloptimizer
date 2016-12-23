@@ -19,10 +19,10 @@ namespace FuelOptimizer.Clases.COR
             if (_default)
             {
                 Tramos = new List<Tramo>();
-                this.addTramo(1000, 100, 180);
-                this.addTramo(1000, 50, 90);
-                this.addTramo(1000, 100, 180);
-                this.addTramo(1000, 50, 90);
+                this.addTramo(1000, 50, 140);
+                this.addTramo(1000, 20, 90);
+                this.addTramo(1000, 50, 140);
+                this.addTramo(1000, 20, 90);
                 this.LongitudTramoActualizacion = 100;
             }
         }
@@ -42,8 +42,27 @@ namespace FuelOptimizer.Clases.COR
 
         public void addTramo(int longitud, int minVelocidad, int maxVelocidad)
         {
-            Tramos.Add(new Tramo() { Longitud = longitud, MaxVelocidad = maxVelocidad, MinVelocidad = minVelocidad });
+            Tramos.Add(new Tramo() { ID = Tramos.Count, Longitud = longitud, MaxVelocidad = maxVelocidad, MinVelocidad = minVelocidad });
             this.recalcularParametrosCircuito();
+        }
+
+        public Tramo getTramoPorLongitud (int longitud)
+        {
+            Tramo tramo = Tramos[0];
+            int longitudAcumulada = Tramos[0].Longitud;
+            if (longitud > longitudAcumulada)
+            {
+                for (int idx = 1; idx < Tramos.Count; idx++)
+                {
+                    tramo = Tramos[idx];
+                    longitudAcumulada += Tramos[idx].Longitud;
+                    if (longitud <= longitudAcumulada)
+                    {
+                        break;
+                    }
+                }
+            }
+            return tramo;
         }
     }
 }

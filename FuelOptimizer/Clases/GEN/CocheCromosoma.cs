@@ -42,8 +42,7 @@ namespace FuelOptimizer.Clases.GEN
 
         public IChromosome CreateNew()
         {
-            // Retorno de la generación inicial del cromosoma
-            throw new NotImplementedException();
+            return this;
         }
 
         public void Crossover(IChromosome pair)
@@ -61,12 +60,42 @@ namespace FuelOptimizer.Clases.GEN
         public void Generate()
         {
             // Generación inicial de genes del cromosoma
-            throw new NotImplementedException();
+            int longitudActual = 0;
+            for (int idx = 0; idx < Genes.Length; idx++)
+            {
+                Genes[idx] = new CocheGen();
+                var TramoActual = Circuito.Current.getTramoPorLongitud(longitudActual);
+                Genes[idx].Generate(TramoActual);
+                longitudActual += Circuito.Current.LongitudTramoActualizacion;
+            }
+            // Retorno de la generación inicial del cromosoma
         }
 
         public void Mutate()
         {
             // Definir cómo van a mutar los genes del cromosoma
+            throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            int idx = 0;
+            foreach(var Gene in Genes)
+            {
+                sb.Append(string.Format("Gen {0}\n", idx));
+                sb.Append(Gene);
+                idx++;
+            }
+            return sb.ToString();
+        }
+    }
+
+    public class FitnessCoche : IFitnessFunction
+    {
+        public double Evaluate(IChromosome chromosome)
+        {
+            // Aquí se retornará un valor mayor que 0 en función de nuestra valoración del cromosoma
             throw new NotImplementedException();
         }
     }

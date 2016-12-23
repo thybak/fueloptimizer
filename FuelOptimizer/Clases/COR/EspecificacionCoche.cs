@@ -47,25 +47,25 @@ namespace FuelOptimizer.Clases.COR
             switch (numMarcha)
             {
                 case 1: // parametrizables para la marcha, pero por ahora son fijos los parámetros de consumo para el motor encontrado
-                    a = 64 / 3500; b = -1287 / 700; c = 48.9;
+                    a = 64.0 / 3500.0; b = -1287.0 / 700.0; c = 48.9;
                     break;
                 case 2:
-                    a = 64 / 3500; b = -1287 / 700; c = 48.9;
+                    a = 64.0 / 3500.0; b = -1287.0 / 700.0; c = 48.9;
                     break;
                 case 3:
-                    a = 7 / 1200; b = -0.75; c = 86 / 3;
+                    a = 7.0 / 1200.0; b = -0.75; c = 86.0 / 3.0;
                     break;
                 case 4:
-                    a = 7 / 2750; b = -223 / 550; c = 219 / 11;
+                    a = 7.0 / 2750.0; b = -223.0 / 550.0; c = 219.0 / 11.0;
                     break;
                 case 5:
                     a = 0.0025; b = -0.45; c = 24;
                     break;
                 default:
-                    a = 3 / 1540; b = -317 / 770; c = 1978 / 77;
+                    a = 3.0 / 1540.0; b = -317.0 / 770.0; c = 1978.0 / 77.0;
                     break;
             }
-            return (a * Math.Pow(velocidad, 2) + b * velocidad + c) / 1000;
+            return (a * Math.Pow(velocidad, 2) + b * velocidad + c) / 1000.0;
         }
     }
 }

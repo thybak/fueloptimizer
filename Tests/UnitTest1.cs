@@ -29,5 +29,28 @@ namespace Tests
             cromosoma.Generate();
             Console.WriteLine(cromosoma);
         }
+
+        [TestMethod]
+        public void pruebaFitness()
+        {
+            var cromosoma = new CocheCromosoma();
+            cromosoma.Generate();
+            var fitness = new CocheFitness();
+            Console.WriteLine(fitness.Evaluate(cromosoma));
+        }
+
+        [TestMethod]
+        public void pruebaMutacion()
+        {
+            var cromosoma = new CocheCromosoma();
+            cromosoma.Generate();
+            var fitness = new CocheFitness();
+            Console.WriteLine(fitness.Evaluate(cromosoma));
+            for (int i = 0; i < 500; i++)
+            {
+                cromosoma.Mutate();
+                Console.WriteLine(fitness.Evaluate(cromosoma));
+            }
+        }
     }
 }

@@ -10,10 +10,13 @@ namespace FuelOptimizer.Clases.GEN
 {
     public class CocheGen : IGPGene
     {
+        public const int VARIACION_VELOCIDAD = 5;
+
         public int Velocidad { get; set; }
         public int MarchaActual { get; set; }
         public double ConsumoActual { get; set; }
         public int TramoAsociado { get; set; }
+        public double Fitness { get; set; }
 
         public CocheGen()
         {
@@ -60,6 +63,18 @@ namespace FuelOptimizer.Clases.GEN
             MarchaActual = EspecificacionCoche.Current.getMarcha(Velocidad);
             ConsumoActual = EspecificacionCoche.Current.getConsumo(MarchaActual, Velocidad);
             TramoAsociado = tramo.ID;
+        }
+
+        public void Mutate()
+        {
+            var tramo = Circuito.Current.Tramos.FirstOrDefault(x => x.ID == TramoAsociado);
+            do
+            {
+                int variacion = new Random(Guid.NewGuid().GetHashCode()).Next(-VARIACION_VELOCIDAD, VARIACION_VELOCIDAD);
+                Velocidad += variacion;
+            } while (Velocidad <= tramo.MaxVelocidad && Velocidad >= tramo.MinVelocidad);
+            MarchaActual = EspecificacionCoche.Current.getMarcha(Velocidad);
+            ConsumoActual = EspecificacionCoche.Current.getConsumo(MarchaActual, Velocidad);
         }
 
         public void Generate(GPGeneType type)

@@ -59,12 +59,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Clases\COR\Circuito.cs" />
+    <Compile Include="Clases\COR\Utils.cs" />
     <Compile Include="Clases\GEN\CocheCromosoma.cs" />
+    <Compile Include="Clases\GEN\CocheFitness.cs" />
     <Compile Include="Clases\GEN\CocheGen.cs" />
     <Compile Include="Clases\COR\Marcha.cs" />
     <Compile Include="Clases\COR\Tramo.cs" />
     <Compile Include="Clases\COR\EspecificacionCoche.cs" />
     <Compile Include="Clases\GEN\CochePoblacion.cs" />
+    <Compile Include="Clases\GEN\CocheSeleccion.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>
     </Compile>

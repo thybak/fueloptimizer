@@ -10,7 +10,7 @@ namespace FuelOptimizer.Clases.GEN
 {
     public class CocheCromosoma : IChromosome
     {
-        public const double PORCENTAJE_MUTACION = .10;
+        public const double PORCENTAJE_MUTACION = .010;
 
         public CocheGen[] Genes { get; set; }
 
@@ -36,26 +36,50 @@ namespace FuelOptimizer.Clases.GEN
             return this.Clone();
         }
 
-        public int CompareTo(object obj)
+        public int CompareTo(object cromosoma)
         {
-            // ¿¿??
-            throw new NotImplementedException();
+            // Asumimos que solo se puede comparar con otro cromosoma y por fitness, útil para el método Sort()
+            var FitnessCromosoma = (cromosoma as CocheCromosoma).Fitness;
+            if (FitnessCromosoma > Fitness)
+            {
+                return 1;
+            } else if (Fitness == FitnessCromosoma)
+            {
+                return 0;
+            } else
+            {
+                return -1;
+            }
         }
 
         public IChromosome CreateNew()
         {
-            return this;
+            // Generamos un nuevo cromosoma
+            var cromosoma = new CocheCromosoma();
+            cromosoma.Generate();
+            return cromosoma;
         }
 
-        public void Crossover(IChromosome pair)
+        public void Crossover(IChromosome cromosomaPar)
         {
             // Mezcla de genes de cromosomas para dar lugar a otros nuevos
-            throw new NotImplementedException();
+            int posicionInicial = Utils.GenerarEnteroAleatorio(0, Genes.Length);
+            int posicionFinal = Utils.GenerarEnteroAleatorio(posicionInicial, Genes.Length);
+
+            var cocheCromosoma = cromosomaPar as CocheCromosoma;
+
+            for(int idx = 0; idx < Genes.Length; idx++)
+            {
+                if (idx < posicionInicial || idx > posicionFinal)
+                {
+                    Genes[idx] = cocheCromosoma.Genes[idx];
+                }
+            }
         }
 
-        public void Evaluate(IFitnessFunction function)
+        public void Evaluate(IFitnessFunction funcion)
         {
-            _Fitness = function.Evaluate(this);
+            _Fitness = funcion.Evaluate(this);
         }
 
         public void Generate()
@@ -71,29 +95,17 @@ namespace FuelOptimizer.Clases.GEN
             }
         }
 
-        private HashSet<int> GetGenesAMutar()
-        {
-            var numGenesAMutar = (int)(Genes.Length * PORCENTAJE_MUTACION);
-            var indicesGen = new HashSet<int>();
-            for (int numGen = 0; numGen < numGenesAMutar; numGen++)
-            {
-                var indiceAleatorio = new Random(Guid.NewGuid().GetHashCode()).Next(0, 40);
-                while (indicesGen.Contains(indiceAleatorio))
-                {
-                    indiceAleatorio = new Random(Guid.NewGuid().GetHashCode()).Next(0, 40);
-                }
-                indicesGen.Add(indiceAleatorio);
-            }
-            return indicesGen;
-        }
-
         public void Mutate()
         {
             // Definir cómo van a mutar los genes del cromosoma
-            var indicesMutables = GetGenesAMutar();
-            foreach(var _idx in indicesMutables)
+            foreach(var _Gen in Genes)
             {
-                Genes[_idx].Mutate();
+                var porcentajeAleatorio = Utils.GenerarRealAleatorio();
+                if (porcentajeAleatorio < PORCENTAJE_MUTACION)
+                {
+                    Console.WriteLine(">" + porcentajeAleatorio);
+                    Genes[Utils.GenerarEnteroAleatorio(0, Genes.Length)].Mutate();
+                }
             }
         }
 
@@ -109,33 +121,10 @@ namespace FuelOptimizer.Clases.GEN
             }
             return sb.ToString();
         }
-    }
 
-    public class CocheFitness : IFitnessFunction
-    {
-        public CocheCromosoma cocheCromosoma { get; set; }
-
-        private double GetMediaTramo(Tramo tramo)
+        public double GetConsumoTotal()
         {
-            var MinValorConsumo = cocheCromosoma.Genes.Where(x => x.TramoAsociado == tramo.ID).Min(x=>x.ConsumoActual);
-            double proporcionAcumulada = 0.0;
-            foreach(var Gen in cocheCromosoma.Genes.Where(x=>x.TramoAsociado == tramo.ID))
-            {
-                var proporcion = MinValorConsumo / Gen.ConsumoActual;
-                proporcionAcumulada += proporcion;
-            }
-            return proporcionAcumulada / cocheCromosoma.Genes.Where(x => x.TramoAsociado == tramo.ID).Count();
-        }
-
-        public double Evaluate(IChromosome cocheCromosoma)
-        {
-            this.cocheCromosoma = cocheCromosoma as CocheCromosoma;
-            double porcentajeAcumulado = 0.0;
-            foreach(var Tramo in Circuito.Current.Tramos)
-            {
-                porcentajeAcumulado += GetMediaTramo(Tramo);
-            }
-            return porcentajeAcumulado / Circuito.Current.Tramos.Count;
+            return Genes.Sum(x => x.ConsumoActual);
         }
     }
 }

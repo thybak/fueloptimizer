@@ -59,7 +59,7 @@ namespace FuelOptimizer.Clases.GEN
 
         public void Generate(Tramo tramo)
         {
-            Velocidad = new Random(Guid.NewGuid().GetHashCode()).Next(tramo.MinVelocidad, tramo.MaxVelocidad);
+            Velocidad = Utils.GenerarEnteroAleatorio(tramo.MinVelocidad, tramo.MaxVelocidad+1);
             MarchaActual = EspecificacionCoche.Current.getMarcha(Velocidad);
             ConsumoActual = EspecificacionCoche.Current.getConsumo(MarchaActual, Velocidad);
             TramoAsociado = tramo.ID;
@@ -70,7 +70,7 @@ namespace FuelOptimizer.Clases.GEN
             var tramo = Circuito.Current.Tramos.FirstOrDefault(x => x.ID == TramoAsociado);
             do
             {
-                int variacion = new Random(Guid.NewGuid().GetHashCode()).Next(-VARIACION_VELOCIDAD, VARIACION_VELOCIDAD);
+                int variacion = Utils.GenerarEnteroAleatorio(-VARIACION_VELOCIDAD, VARIACION_VELOCIDAD+1);
                 Velocidad += variacion;
             } while (Velocidad <= tramo.MaxVelocidad && Velocidad >= tramo.MinVelocidad);
             MarchaActual = EspecificacionCoche.Current.getMarcha(Velocidad);

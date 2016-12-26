@@ -9,6 +9,8 @@ namespace FuelOptimizer.Clases.GEN
 {
     public class CochePoblacion
     {
-        // TODO: Definir la población, generaciones y método de evolución.
+        public Population Poblacion { get; set; }
+
+        
     }
 }

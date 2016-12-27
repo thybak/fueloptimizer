@@ -33,7 +33,10 @@ namespace FuelOptimizer.Clases.GEN
 
         public IChromosome Clone()
         {
-            return this.Clone();
+            var cromosoma = new CocheCromosoma();
+            cromosoma.Genes = this.Genes;
+            cromosoma._Fitness = this.Fitness;
+            return cromosoma;
         }
 
         public int CompareTo(object cromosoma)

@@ -88,5 +88,12 @@ namespace Tests
             seleccion.ApplySelection(this.cromosomas, 20);
             Console.WriteLine(this.cromosomas.Count);
         }
+
+        [TestMethod]
+        public void pruebaPoblacion()
+        {
+            var poblacion = new CochePoblacion();
+            poblacion.LanzarGeneraciones();
+        }
     }
 }

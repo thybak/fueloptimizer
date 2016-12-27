@@ -49,7 +49,13 @@ namespace FuelOptimizer.Clases.GEN
 
         public IGPGene Clone()
         {
-            return this.Clone();
+            var gen = new CocheGen();
+            gen.Velocidad = this.Velocidad;
+            gen.MarchaActual = this.MarchaActual;
+            gen.ConsumoActual = this.ConsumoActual;
+            gen.TramoAsociado = this.TramoAsociado;
+            gen.Fitness = this.Fitness;
+            return gen;
         }
 
         public void Generate()

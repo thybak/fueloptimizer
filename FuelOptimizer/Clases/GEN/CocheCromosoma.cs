@@ -10,7 +10,7 @@ namespace FuelOptimizer.Clases.GEN
 {
     public class CocheCromosoma : IChromosome
     {
-        public const double PORCENTAJE_MUTACION = .010;
+        public const double PORCENTAJE_MUTACION = .05;
 
         public CocheGen[] Genes { get; set; }
 
@@ -34,22 +34,26 @@ namespace FuelOptimizer.Clases.GEN
         public IChromosome Clone()
         {
             var cromosoma = new CocheCromosoma();
-            cromosoma.Genes = this.Genes;
-            cromosoma._Fitness = this.Fitness;
+            for (int idx = 0; idx < Genes.Length; idx++)
+            {
+                cromosoma.Genes[idx] = (CocheGen)Genes[idx].Clone();
+            }
             return cromosoma;
         }
 
         public int CompareTo(object cromosoma)
         {
             // Asumimos que solo se puede comparar con otro cromosoma y por fitness, útil para el método Sort()
-            var FitnessCromosoma = (cromosoma as CocheCromosoma).Fitness;
+            var FitnessCromosoma = ((IChromosome)cromosoma).Fitness;
             if (FitnessCromosoma > Fitness)
             {
                 return 1;
-            } else if (Fitness == FitnessCromosoma)
+            }
+            else if (Fitness == FitnessCromosoma)
             {
                 return 0;
-            } else
+            }
+            else
             {
                 return -1;
             }
@@ -69,13 +73,13 @@ namespace FuelOptimizer.Clases.GEN
             int posicionInicial = Utils.GenerarEnteroAleatorio(0, Genes.Length);
             int posicionFinal = Utils.GenerarEnteroAleatorio(posicionInicial, Genes.Length);
 
-            var cocheCromosoma = cromosomaPar as CocheCromosoma;
+            var cocheCromosoma = (CocheCromosoma)cromosomaPar;
 
-            for(int idx = 0; idx < Genes.Length; idx++)
+            for (int idx = 0; idx < Genes.Length; idx++)
             {
                 if (idx < posicionInicial || idx > posicionFinal)
                 {
-                    Genes[idx] = cocheCromosoma.Genes[idx];
+                    Genes[idx] = (CocheGen)cocheCromosoma.Genes[idx].Clone();
                 }
             }
         }
@@ -101,12 +105,11 @@ namespace FuelOptimizer.Clases.GEN
         public void Mutate()
         {
             // Definir cómo van a mutar los genes del cromosoma
-            foreach(var _Gen in Genes)
+            foreach (var _Gen in Genes)
             {
                 var porcentajeAleatorio = Utils.GenerarRealAleatorio();
                 if (porcentajeAleatorio < PORCENTAJE_MUTACION)
                 {
-                    Console.WriteLine(">" + porcentajeAleatorio);
                     Genes[Utils.GenerarEnteroAleatorio(0, Genes.Length)].Mutate();
                 }
             }
@@ -116,7 +119,7 @@ namespace FuelOptimizer.Clases.GEN
         {
             var sb = new StringBuilder();
             int idx = 0;
-            foreach(var Gene in Genes)
+            foreach (var Gene in Genes)
             {
                 sb.Append(string.Format("\nGen {0}\n", idx));
                 sb.Append(Gene);

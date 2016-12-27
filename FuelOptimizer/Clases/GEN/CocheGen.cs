@@ -16,7 +16,6 @@ namespace FuelOptimizer.Clases.GEN
         public int MarchaActual { get; set; }
         public double ConsumoActual { get; set; }
         public int TramoAsociado { get; set; }
-        public double Fitness { get; set; }
 
         public CocheGen()
         {
@@ -54,7 +53,6 @@ namespace FuelOptimizer.Clases.GEN
             gen.MarchaActual = this.MarchaActual;
             gen.ConsumoActual = this.ConsumoActual;
             gen.TramoAsociado = this.TramoAsociado;
-            gen.Fitness = this.Fitness;
             return gen;
         }
 
@@ -78,7 +76,7 @@ namespace FuelOptimizer.Clases.GEN
             {
                 int variacion = Utils.GenerarEnteroAleatorio(-VARIACION_VELOCIDAD, VARIACION_VELOCIDAD+1);
                 Velocidad += variacion;
-            } while (Velocidad <= tramo.MaxVelocidad && Velocidad >= tramo.MinVelocidad);
+            } while (Velocidad > tramo.MaxVelocidad || Velocidad < tramo.MinVelocidad);
             MarchaActual = EspecificacionCoche.Current.getMarcha(Velocidad);
             ConsumoActual = EspecificacionCoche.Current.getConsumo(MarchaActual, Velocidad);
         }

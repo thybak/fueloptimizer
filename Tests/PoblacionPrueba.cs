@@ -93,7 +93,7 @@ namespace Tests
         public void pruebaPoblacion()
         {
             var poblacion = new CochePoblacion();
-            poblacion.LanzarGeneraciones();
+            //poblacion.LanzarGeneraciones();
         }
     }
 }

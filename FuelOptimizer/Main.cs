@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -19,6 +20,7 @@ namespace FuelOptimizer
         public Main()
         {
             InitializeComponent();
+            this.tramoBindingSource.DataSource = Circuito.Current.Tramos;
         }
 
         private void ForzarVelocidadMinimaMarcha(TextBox origen, TextBox destino)
@@ -65,6 +67,23 @@ namespace FuelOptimizer
         {
             btnLanzamiento.Enabled = false;
             btnVerResultados.Enabled = false;
+
+            bwCalculo.RunWorkerAsync();
+        }
+
+        private void btnVerResultados_Click(object sender, EventArgs e)
+        {
+            var graficas = new Graficas();
+            graficas.Resultados = Poblacion.Resultados;
+            graficas.preparar();
+            graficas.Show();
+        }
+
+        private void bwCalculo_DoWork(object sender, DoWorkEventArgs e)
+        {
+            btnLanzamiento.Enabled = false;
+            btnVerResultados.Enabled = false;
+            GC.Collect();
             var TramoLista = ((BindingSource)dgvCircuito.DataSource).List.Cast<Tramo>().ToList();
             int idx = 0;
             foreach (var Tramo in TramoLista)
@@ -80,17 +99,19 @@ namespace FuelOptimizer
             Marchas.Add(new Marcha(5, txtMarcha5Min.Text, txtMarcha5Max.Text));
             EspecificacionCoche.Current.setMarchas(Marchas);
             Poblacion = new CochePoblacion(int.Parse(txtNumGeneraciones.Text), int.Parse(txtSize.Text));
-            Poblacion.LanzarGeneraciones();
-            btnVerResultados.Enabled = true;
-            btnLanzamiento.Enabled = true;
+            Poblacion.LanzarGeneraciones(tslblGeneracion);   
         }
 
-        private void btnVerResultados_Click(object sender, EventArgs e)
+        private void bwCalculo_Completed(object sender, RunWorkerCompletedEventArgs e)
         {
-            var graficas = new Graficas();
-            graficas.Resultados = Poblacion.Resultados;
-            graficas.preparar();
-            graficas.Show();
+            if (e.Error == null)
+            {
+                btnLanzamiento.Enabled = true;
+                btnVerResultados.Enabled = true;
+            } else
+            {
+                tslblGeneracion.Text = e.Error.Message;
+            }
         }
     }
 }

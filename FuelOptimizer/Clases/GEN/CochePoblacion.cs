@@ -43,7 +43,7 @@ namespace FuelOptimizer.Clases.GEN
             Poblacion.RandomSelectionPortion = 0.1;
         }
 
-        public void LanzarGeneraciones()
+        public void LanzarGeneraciones(ToolStripStatusLabel lbl)
         {
             if (Poblacion == null)
             {
@@ -53,7 +53,7 @@ namespace FuelOptimizer.Clases.GEN
             {
                 Poblacion.RunEpoch();
                 Resultados.Add(new CocheResultado() { BestChromosome = Poblacion.BestChromosome.Clone() as CocheCromosoma, FitnessAvg = Poblacion.FitnessAvg, FitnessMax = Poblacion.FitnessMax });
-                Console.WriteLine(string.Format("Generación {0}\nMáximo {1}\nMedia {2}\nMejor cromosoma {3}", generacion + 1, Poblacion.FitnessMax, Poblacion.FitnessAvg, ((CocheCromosoma)Poblacion.BestChromosome).GetConsumoTotal()));
+                lbl.Text = string.Format("Generación {0} de {1}", generacion + 1, NumGeneraciones);
             }
         }
     }

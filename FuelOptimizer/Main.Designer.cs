@@ -31,6 +31,7 @@ namespace FuelOptimizer
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.gbCircuito = new System.Windows.Forms.GroupBox();
             this.txtLongitudTramoActualizacion = new System.Windows.Forms.TextBox();
             this.lblTramoActualizacion = new System.Windows.Forms.Label();
@@ -59,18 +60,15 @@ namespace FuelOptimizer
             this.txtSize = new System.Windows.Forms.TextBox();
             this.btnLanzamiento = new System.Windows.Forms.Button();
             this.btnVerResultados = new System.Windows.Forms.Button();
-            this.stripEstado = new System.Windows.Forms.StatusStrip();
-            this.tslblProporcionGeneraciones = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tramoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.longitudDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.minVelocidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.maxVelocidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tramoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gbCircuito.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCircuito)).BeginInit();
             this.gbCoche.SuspendLayout();
             this.gbGenetico.SuspendLayout();
-            this.stripEstado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tramoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -365,30 +363,18 @@ namespace FuelOptimizer
             this.btnVerResultados.TabIndex = 4;
             this.btnVerResultados.Text = "Ver resultados finales";
             this.btnVerResultados.UseVisualStyleBackColor = true;
+            this.btnVerResultados.Click += new System.EventHandler(this.btnVerResultados_Click);
             // 
-            // stripEstado
+            // tramoBindingSource
             // 
-            this.stripEstado.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tslblProporcionGeneraciones});
-            this.stripEstado.Location = new System.Drawing.Point(0, 547);
-            this.stripEstado.Name = "stripEstado";
-            this.stripEstado.Size = new System.Drawing.Size(695, 22);
-            this.stripEstado.TabIndex = 5;
-            this.stripEstado.Text = "statusStrip1";
-            // 
-            // tslblProporcionGeneraciones
-            // 
-            this.tslblProporcionGeneraciones.Name = "tslblProporcionGeneraciones";
-            this.tslblProporcionGeneraciones.Size = new System.Drawing.Size(225, 17);
-            this.tslblProporcionGeneraciones.Text = "No se ha lanzado ninguna optimización...";
+            this.tramoBindingSource.DataSource = Circuito.Current.Tramos;
+            this.tramoBindingSource.Position = 0;
             // 
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
             this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
-            this.iDDataGridViewTextBoxColumn.Visible = false;
             // 
             // longitudDataGridViewTextBoxColumn
             // 
@@ -408,17 +394,11 @@ namespace FuelOptimizer
             this.maxVelocidadDataGridViewTextBoxColumn.HeaderText = "MaxVelocidad";
             this.maxVelocidadDataGridViewTextBoxColumn.Name = "maxVelocidadDataGridViewTextBoxColumn";
             // 
-            // tramoBindingSource
-            // 
-            //this.tramoBindingSource.DataSource = typeof(FuelOptimizer.Clases.COR.Tramo);
-            this.tramoBindingSource.DataSource = Circuito.Current.Tramos;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(695, 569);
-            this.Controls.Add(this.stripEstado);
             this.Controls.Add(this.btnVerResultados);
             this.Controls.Add(this.btnLanzamiento);
             this.Controls.Add(this.gbGenetico);
@@ -433,11 +413,8 @@ namespace FuelOptimizer
             this.gbCoche.PerformLayout();
             this.gbGenetico.ResumeLayout(false);
             this.gbGenetico.PerformLayout();
-            this.stripEstado.ResumeLayout(false);
-            this.stripEstado.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tramoBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -471,8 +448,6 @@ namespace FuelOptimizer
         private System.Windows.Forms.TextBox txtSize;
         private System.Windows.Forms.Button btnLanzamiento;
         private System.Windows.Forms.Button btnVerResultados;
-        private System.Windows.Forms.StatusStrip stripEstado;
-        private System.Windows.Forms.ToolStripStatusLabel tslblProporcionGeneraciones;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn longitudDataGridViewTextBoxColumn;

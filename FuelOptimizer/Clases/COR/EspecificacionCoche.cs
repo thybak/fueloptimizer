@@ -67,7 +67,7 @@ namespace FuelOptimizer.Clases.COR
                     a = 3.0 / 1540.0; b = -317.0 / 770.0; c = 1978.0 / 77.0;
                     break;
             }
-            return (a * Math.Pow(velocidad, 2) + b * velocidad + c) / 1000.0;
+            return (a * Math.Pow(velocidad, 2) + b * velocidad + c) / (100000.0 / Circuito.Current.LongitudTramoActualizacion);
         }
 
         public void setMarchas(List<Marcha> marchas)

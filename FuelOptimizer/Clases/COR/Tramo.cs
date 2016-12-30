@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace FuelOptimizer.Clases.COR
 {
+    [Serializable]
     public class Tramo
     {
         public int ID { get; set; }

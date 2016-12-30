@@ -13,7 +13,7 @@ namespace FuelOptimizer.Clases.GEN
         public double Evaluate(IChromosome cocheCromosoma)
         {
             var fitness = 1 - ((CocheCromosoma)cocheCromosoma).GetConsumoTotal();
-            return fitness < 0 ? 0 : fitness;
+            return fitness;
         }
     }
 }

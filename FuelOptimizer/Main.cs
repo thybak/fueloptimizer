@@ -14,6 +14,8 @@ namespace FuelOptimizer
 {
     public partial class Main : Form
     {
+        public CochePoblacion Poblacion { get; set; }
+
         public Main()
         {
             InitializeComponent();
@@ -77,10 +79,18 @@ namespace FuelOptimizer
             Marchas.Add(new Marcha(4, txtMarcha4Min.Text, txtMarcha4Max.Text));
             Marchas.Add(new Marcha(5, txtMarcha5Min.Text, txtMarcha5Max.Text));
             EspecificacionCoche.Current.setMarchas(Marchas);
-            var poblacion = new CochePoblacion(int.Parse(txtNumGeneraciones.Text), int.Parse(txtSize.Text));
-            poblacion.LanzarGeneraciones();
+            Poblacion = new CochePoblacion(int.Parse(txtNumGeneraciones.Text), int.Parse(txtSize.Text));
+            Poblacion.LanzarGeneraciones();
             btnVerResultados.Enabled = true;
             btnLanzamiento.Enabled = true;
+        }
+
+        private void btnVerResultados_Click(object sender, EventArgs e)
+        {
+            var graficas = new Graficas();
+            graficas.Resultados = Poblacion.Resultados;
+            graficas.preparar();
+            graficas.Show();
         }
     }
 }

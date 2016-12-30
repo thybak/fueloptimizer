@@ -119,10 +119,10 @@ namespace FuelOptimizer.Clases.GEN
         {
             var sb = new StringBuilder();
             int idx = 0;
-            foreach (var Gene in Genes)
+            foreach (var Gen in Genes)
             {
-                sb.Append(string.Format("\nGen {0}\n", idx));
-                sb.Append(Gene);
+                sb.Append(string.Format("{0}Gen {1}{2}", Environment.NewLine + Environment.NewLine, idx, Environment.NewLine));
+                sb.Append(Gen);
                 idx++;
             }
             return sb.ToString();

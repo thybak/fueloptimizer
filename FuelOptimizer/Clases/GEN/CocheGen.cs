@@ -98,7 +98,7 @@ namespace FuelOptimizer.Clases.GEN
 
         public override string ToString()
         {
-            return string.Format("Velocidad: {0}\nMarcha: {1}\nConsumo del subtramo: {2}\nÍndice del tramo asociado: {3} ", Velocidad, MarchaActual, ConsumoActual, TramoAsociado);
+            return string.Format("Velocidad: {0}{1}Marcha: {2}{3}Consumo del subtramo: {4}{5}Índice del tramo asociado: {6} ", Velocidad, Environment.NewLine, MarchaActual, Environment.NewLine, ConsumoActual, Environment.NewLine, TramoAsociado);
         }
     }
 }

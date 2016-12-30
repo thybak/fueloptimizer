@@ -17,7 +17,7 @@ namespace FuelOptimizer.Clases.COR
             {
                 Marchas = new List<Marcha>();
                 this.addMarcha(1, 0, 20);
-                this.addMarcha(2, 20, 50);
+                this.addMarcha(2, 21, 50);
                 this.addMarcha(3, 51, 75);
                 this.addMarcha(4, 76, 90);
                 this.addMarcha(5, 91, 150);
@@ -28,6 +28,7 @@ namespace FuelOptimizer.Clases.COR
         {
             Marchas.Add(new Marcha() { NumMarcha = numMarcha, MinVelocidad = minVelocidad, MaxVelocidad = maxVelocidad });
         }
+
         public int getMarcha(int velocidad)
         {
             int numMarcha = 0;
@@ -41,6 +42,7 @@ namespace FuelOptimizer.Clases.COR
             }
             return numMarcha;
         }
+
         public double getConsumo(int numMarcha, int velocidad)
         {
             double a, b, c = 0;
@@ -66,6 +68,12 @@ namespace FuelOptimizer.Clases.COR
                     break;
             }
             return (a * Math.Pow(velocidad, 2) + b * velocidad + c) / 1000.0;
+        }
+
+        public void setMarchas(List<Marcha> marchas)
+        {
+            Marchas.RemoveRange(0, Marchas.Count);
+            Marchas.AddRange(marchas);
         }
     }
 }

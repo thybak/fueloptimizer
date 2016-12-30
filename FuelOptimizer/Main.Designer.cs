@@ -1,4 +1,6 @@
-﻿namespace FuelOptimizer
+﻿using FuelOptimizer.Clases.COR;
+
+namespace FuelOptimizer
 {
     partial class Main
     {
@@ -30,7 +32,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gbCircuito = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtLongitudTramoActualizacion = new System.Windows.Forms.TextBox();
             this.lblTramoActualizacion = new System.Windows.Forms.Label();
             this.dgvCircuito = new System.Windows.Forms.DataGridView();
             this.gbCoche = new System.Windows.Forms.GroupBox();
@@ -52,7 +54,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.gbGenetico = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtNumGeneraciones = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtSize = new System.Windows.Forms.TextBox();
             this.btnLanzamiento = new System.Windows.Forms.Button();
@@ -74,7 +76,7 @@
             // 
             // gbCircuito
             // 
-            this.gbCircuito.Controls.Add(this.textBox1);
+            this.gbCircuito.Controls.Add(this.txtLongitudTramoActualizacion);
             this.gbCircuito.Controls.Add(this.lblTramoActualizacion);
             this.gbCircuito.Controls.Add(this.dgvCircuito);
             this.gbCircuito.Location = new System.Drawing.Point(12, 12);
@@ -82,19 +84,21 @@
             this.gbCircuito.Size = new System.Drawing.Size(671, 168);
             this.gbCircuito.TabIndex = 0;
             this.gbCircuito.TabStop = false;
-            this.gbCircuito.Text = "Características del circuito (m)";
+            this.gbCircuito.Text = "Características del circuito (medidas en metros)";
             // 
-            // textBox1
+            // txtLongitudTramoActualizacion
             // 
-            this.textBox1.Location = new System.Drawing.Point(508, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 3;
+            this.txtLongitudTramoActualizacion.Location = new System.Drawing.Point(465, 80);
+            this.txtLongitudTramoActualizacion.Name = "txtLongitudTramoActualizacion";
+            this.txtLongitudTramoActualizacion.Size = new System.Drawing.Size(100, 20);
+            this.txtLongitudTramoActualizacion.TabIndex = 3;
+            this.txtLongitudTramoActualizacion.Text = "100";
+            this.txtLongitudTramoActualizacion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // lblTramoActualizacion
             // 
             this.lblTramoActualizacion.AutoSize = true;
-            this.lblTramoActualizacion.Location = new System.Drawing.Point(470, 19);
+            this.lblTramoActualizacion.Location = new System.Drawing.Point(427, 50);
             this.lblTramoActualizacion.Name = "lblTramoActualizacion";
             this.lblTramoActualizacion.Size = new System.Drawing.Size(174, 13);
             this.lblTramoActualizacion.TabIndex = 2;
@@ -112,7 +116,7 @@
             this.dgvCircuito.DataSource = this.tramoBindingSource;
             this.dgvCircuito.Location = new System.Drawing.Point(6, 19);
             this.dgvCircuito.Name = "dgvCircuito";
-            this.dgvCircuito.Size = new System.Drawing.Size(448, 143);
+            this.dgvCircuito.Size = new System.Drawing.Size(349, 143);
             this.dgvCircuito.TabIndex = 1;
             // 
             // gbCoche
@@ -144,6 +148,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(104, 139);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(115, 13);
@@ -156,8 +161,9 @@
             this.txtMarcha4Max.Name = "txtMarcha4Max";
             this.txtMarcha4Max.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha4Max.TabIndex = 16;
+            this.txtMarcha4Max.Text = "90";
             this.txtMarcha4Max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMarcha4Max.TextChanged += new System.EventHandler(this.txtMarcha4Max_TextChanged);
+            this.txtMarcha4Max.Leave += new System.EventHandler(this.txtMarcha4Max_TextChanged);
             // 
             // txtMarcha4Min
             // 
@@ -166,6 +172,7 @@
             this.txtMarcha4Min.ReadOnly = true;
             this.txtMarcha4Min.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha4Min.TabIndex = 15;
+            this.txtMarcha4Min.Text = "76";
             this.txtMarcha4Min.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMarcha3Max
@@ -174,8 +181,9 @@
             this.txtMarcha3Max.Name = "txtMarcha3Max";
             this.txtMarcha3Max.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha3Max.TabIndex = 14;
+            this.txtMarcha3Max.Text = "75";
             this.txtMarcha3Max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMarcha3Max.TextChanged += new System.EventHandler(this.txtMarcha3Max_TextChanged);
+            this.txtMarcha3Max.Leave += new System.EventHandler(this.txtMarcha3Max_TextChanged);
             // 
             // txtMarcha3Min
             // 
@@ -184,6 +192,7 @@
             this.txtMarcha3Min.ReadOnly = true;
             this.txtMarcha3Min.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha3Min.TabIndex = 13;
+            this.txtMarcha3Min.Text = "51";
             this.txtMarcha3Min.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMarcha5Max
@@ -192,6 +201,7 @@
             this.txtMarcha5Max.Name = "txtMarcha5Max";
             this.txtMarcha5Max.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha5Max.TabIndex = 12;
+            this.txtMarcha5Max.Text = "150";
             this.txtMarcha5Max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMarcha5Min
@@ -201,6 +211,7 @@
             this.txtMarcha5Min.ReadOnly = true;
             this.txtMarcha5Min.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha5Min.TabIndex = 11;
+            this.txtMarcha5Min.Text = "91";
             this.txtMarcha5Min.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMarcha2Max
@@ -209,8 +220,9 @@
             this.txtMarcha2Max.Name = "txtMarcha2Max";
             this.txtMarcha2Max.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha2Max.TabIndex = 10;
+            this.txtMarcha2Max.Text = "50";
             this.txtMarcha2Max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMarcha2Max.TextChanged += new System.EventHandler(this.txtMarcha2Max_TextChanged);
+            this.txtMarcha2Max.Leave += new System.EventHandler(this.txtMarcha2Max_TextChanged);
             // 
             // txtMarcha2Min
             // 
@@ -219,6 +231,7 @@
             this.txtMarcha2Min.ReadOnly = true;
             this.txtMarcha2Min.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha2Min.TabIndex = 9;
+            this.txtMarcha2Min.Text = "21";
             this.txtMarcha2Min.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMarcha1Max
@@ -227,8 +240,9 @@
             this.txtMarcha1Max.Name = "txtMarcha1Max";
             this.txtMarcha1Max.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha1Max.TabIndex = 8;
+            this.txtMarcha1Max.Text = "20";
             this.txtMarcha1Max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMarcha1Max.TextChanged += new System.EventHandler(this.txtMarcha1Max_TextChanged);
+            this.txtMarcha1Max.Leave += new System.EventHandler(this.txtMarcha1Max_TextChanged);
             // 
             // txtMarcha1Min
             // 
@@ -288,7 +302,7 @@
             // gbGenetico
             // 
             this.gbGenetico.Controls.Add(this.label7);
-            this.gbGenetico.Controls.Add(this.textBox2);
+            this.gbGenetico.Controls.Add(this.txtNumGeneraciones);
             this.gbGenetico.Controls.Add(this.label6);
             this.gbGenetico.Controls.Add(this.txtSize);
             this.gbGenetico.Location = new System.Drawing.Point(12, 370);
@@ -307,12 +321,13 @@
             this.label7.TabIndex = 18;
             this.label7.Text = "Número de generaciones";
             // 
-            // textBox2
+            // txtNumGeneraciones
             // 
-            this.textBox2.Location = new System.Drawing.Point(148, 104);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 19;
+            this.txtNumGeneraciones.Location = new System.Drawing.Point(148, 104);
+            this.txtNumGeneraciones.Name = "txtNumGeneraciones";
+            this.txtNumGeneraciones.Size = new System.Drawing.Size(100, 20);
+            this.txtNumGeneraciones.TabIndex = 19;
+            this.txtNumGeneraciones.Text = "100";
             // 
             // label6
             // 
@@ -329,6 +344,7 @@
             this.txtSize.Name = "txtSize";
             this.txtSize.Size = new System.Drawing.Size(100, 20);
             this.txtSize.TabIndex = 17;
+            this.txtSize.Text = "100";
             // 
             // btnLanzamiento
             // 
@@ -338,6 +354,7 @@
             this.btnLanzamiento.TabIndex = 3;
             this.btnLanzamiento.Text = "Lanzar el algoritmo genético";
             this.btnLanzamiento.UseVisualStyleBackColor = true;
+            this.btnLanzamiento.Click += new System.EventHandler(this.btnLanzamiento_Click);
             // 
             // btnVerResultados
             // 
@@ -370,6 +387,8 @@
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
             this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
+            this.iDDataGridViewTextBoxColumn.ReadOnly = true;
+            this.iDDataGridViewTextBoxColumn.Visible = false;
             // 
             // longitudDataGridViewTextBoxColumn
             // 
@@ -391,7 +410,8 @@
             // 
             // tramoBindingSource
             // 
-            this.tramoBindingSource.DataSource = typeof(FuelOptimizer.Clases.COR.Tramo);
+            //this.tramoBindingSource.DataSource = typeof(FuelOptimizer.Clases.COR.Tramo);
+            this.tramoBindingSource.DataSource = Circuito.Current.Tramos;
             // 
             // Main
             // 
@@ -425,14 +445,10 @@
 
         private System.Windows.Forms.GroupBox gbCircuito;
         private System.Windows.Forms.DataGridView dgvCircuito;
-        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn longitudDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn minVelocidadDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn maxVelocidadDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource tramoBindingSource;
         private System.Windows.Forms.GroupBox gbCoche;
         private System.Windows.Forms.GroupBox gbGenetico;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtLongitudTramoActualizacion;
         private System.Windows.Forms.Label lblTramoActualizacion;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
@@ -450,7 +466,7 @@
         private System.Windows.Forms.TextBox txtMarcha1Max;
         private System.Windows.Forms.TextBox txtMarcha1Min;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtNumGeneraciones;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtSize;
         private System.Windows.Forms.Button btnLanzamiento;
@@ -458,6 +474,10 @@
         private System.Windows.Forms.StatusStrip stripEstado;
         private System.Windows.Forms.ToolStripStatusLabel tslblProporcionGeneraciones;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn iDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn longitudDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn minVelocidadDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maxVelocidadDataGridViewTextBoxColumn;
     }
 }
 

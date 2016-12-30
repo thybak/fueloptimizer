@@ -64,5 +64,15 @@ namespace FuelOptimizer.Clases.COR
             }
             return tramo;
         }
+
+        public void setTramos (List<Tramo> tramos, int longitudTramoActualizacion)
+        {
+            Tramos.RemoveRange(0, Tramos.Count);
+            foreach(var tramo in tramos)
+            {
+                this.addTramo(tramo.Longitud, tramo.MinVelocidad, tramo.MaxVelocidad);
+            }
+            LongitudTramoActualizacion = longitudTramoActualizacion;
+        }
     }
 }

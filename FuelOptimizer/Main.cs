@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FuelOptimizer.Clases.COR;
+using FuelOptimizer.Clases.GEN;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +25,7 @@ namespace FuelOptimizer
             try
             {
                 velocidadMax = int.Parse(origen.Text);
-                var txtMin = this.Controls[origen.Name.Replace("Max", "Min")] as TextBox;
+                var txtMin = gbCoche.Controls[origen.Name.Replace("Max", "Min")] as TextBox;
                 int velocidadMin = int.Parse(txtMin.Text);
                 if (velocidadMax < velocidadMin)
                 {
@@ -55,6 +57,30 @@ namespace FuelOptimizer
         private void txtMarcha4Max_TextChanged(object sender, EventArgs e)
         {
             ForzarVelocidadMinimaMarcha(sender as TextBox, txtMarcha5Min);
+        }
+
+        private void btnLanzamiento_Click(object sender, EventArgs e)
+        {
+            btnLanzamiento.Enabled = false;
+            btnVerResultados.Enabled = false;
+            var TramoLista = ((BindingSource)dgvCircuito.DataSource).List.Cast<Tramo>().ToList();
+            int idx = 0;
+            foreach (var Tramo in TramoLista)
+            {
+                Tramo.ID = idx++;
+            }
+            Circuito.Current.setTramos(TramoLista, int.Parse(txtLongitudTramoActualizacion.Text));
+            var Marchas = new List<Marcha>();
+            Marchas.Add(new Marcha(1, txtMarcha1Min.Text, txtMarcha1Max.Text));
+            Marchas.Add(new Marcha(2, txtMarcha2Min.Text, txtMarcha2Max.Text));
+            Marchas.Add(new Marcha(3, txtMarcha3Min.Text, txtMarcha3Max.Text));
+            Marchas.Add(new Marcha(4, txtMarcha4Min.Text, txtMarcha4Max.Text));
+            Marchas.Add(new Marcha(5, txtMarcha5Min.Text, txtMarcha5Max.Text));
+            EspecificacionCoche.Current.setMarchas(Marchas);
+            var poblacion = new CochePoblacion(int.Parse(txtNumGeneraciones.Text), int.Parse(txtSize.Text));
+            poblacion.LanzarGeneraciones();
+            btnVerResultados.Enabled = true;
+            btnLanzamiento.Enabled = true;
         }
     }
 }

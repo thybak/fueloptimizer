@@ -67,6 +67,7 @@
     <Compile Include="Clases\COR\Tramo.cs" />
     <Compile Include="Clases\COR\EspecificacionCoche.cs" />
     <Compile Include="Clases\GEN\CochePoblacion.cs" />
+    <Compile Include="Clases\GEN\CocheResultado.cs" />
     <Compile Include="Clases\GEN\CocheSeleccion.cs" />
     <Compile Include="Main.cs">
       <SubType>Form</SubType>

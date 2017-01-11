@@ -10,7 +10,7 @@ namespace FuelOptimizer.Clases.GEN
 {
     public class CocheCromosoma : IChromosome
     {
-        public const double PORCENTAJE_MUTACION = .05;
+        public const double PORCENTAJE_MUTACION = .4;
 
         public CocheGen[] Genes { get; set; }
 

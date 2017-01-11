@@ -72,11 +72,12 @@ namespace FuelOptimizer.Clases.GEN
         public void Mutate()
         {
             var tramo = Circuito.Current.Tramos.FirstOrDefault(x => x.ID == TramoAsociado);
+            int variacion = 0;
             do
             {
-                int variacion = Utils.GenerarEnteroAleatorio(-VARIACION_VELOCIDAD, VARIACION_VELOCIDAD+1);
-                Velocidad += variacion;
-            } while (Velocidad > tramo.MaxVelocidad || Velocidad < tramo.MinVelocidad);
+                variacion = Utils.GenerarEnteroAleatorio(-VARIACION_VELOCIDAD, VARIACION_VELOCIDAD+1);
+            } while (Velocidad + variacion > tramo.MaxVelocidad || Velocidad + variacion < tramo.MinVelocidad);
+            Velocidad += variacion;
             MarchaActual = EspecificacionCoche.Current.getMarcha(Velocidad);
             ConsumoActual = EspecificacionCoche.Current.getConsumo(MarchaActual, Velocidad);
         }

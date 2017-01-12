@@ -63,6 +63,10 @@ namespace FuelOptimizer
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tslblGeneracion = new System.Windows.Forms.ToolStripStatusLabel();
             this.bwCalculo = new System.ComponentModel.BackgroundWorker();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gbCircuito.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCircuito)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tramoBindingSource)).BeginInit();
@@ -105,11 +109,20 @@ namespace FuelOptimizer
             // 
             this.dgvCircuito.AutoGenerateColumns = false;
             this.dgvCircuito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCircuito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4});
             this.dgvCircuito.DataSource = this.tramoBindingSource;
             this.dgvCircuito.Location = new System.Drawing.Point(6, 19);
             this.dgvCircuito.Name = "dgvCircuito";
             this.dgvCircuito.Size = new System.Drawing.Size(349, 143);
             this.dgvCircuito.TabIndex = 1;
+            // 
+            // tramoBindingSource
+            // 
+            this.tramoBindingSource.DataSource = typeof(FuelOptimizer.Clases.COR.Tramo);
             // 
             // gbCoche
             // 
@@ -371,6 +384,30 @@ namespace FuelOptimizer
             this.bwCalculo.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwCalculo_DoWork);
             this.bwCalculo.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwCalculo_Completed);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "ID";
+            this.dataGridViewTextBoxColumn1.HeaderText = "ID";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Longitud";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Longitud";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "MinVelocidad";
+            this.dataGridViewTextBoxColumn3.HeaderText = "MinVelocidad";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "MaxVelocidad";
+            this.dataGridViewTextBoxColumn4.HeaderText = "MaxVelocidad";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -437,6 +474,10 @@ namespace FuelOptimizer
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tslblGeneracion;
         private System.ComponentModel.BackgroundWorker bwCalculo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
     }
 }
 

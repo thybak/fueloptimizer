@@ -31,16 +31,8 @@ namespace FuelOptimizer.Clases.COR
 
         public int getMarcha(int velocidad)
         {
-            int numMarcha = 0;
-            foreach(var _Marcha in Marchas)
-            {
-                if (velocidad >= _Marcha.MinVelocidad && velocidad <= _Marcha.MaxVelocidad)
-                {
-                    numMarcha = _Marcha.NumMarcha;
-                    break;
-                }
-            }
-            return numMarcha;
+            var MarchasPosibles = Marchas.Where(x => x.MaxVelocidad >= velocidad && x.MinVelocidad <= velocidad).ToList();
+            return MarchasPosibles[Utils.GenerarEnteroAleatorio(0, MarchasPosibles.Count)].NumMarcha;
         }
 
         public double getConsumo(int numMarcha, int velocidad)

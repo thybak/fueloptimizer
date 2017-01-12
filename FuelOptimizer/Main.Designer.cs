@@ -31,15 +31,10 @@ namespace FuelOptimizer
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.gbCircuito = new System.Windows.Forms.GroupBox();
             this.txtLongitudTramoActualizacion = new System.Windows.Forms.TextBox();
             this.lblTramoActualizacion = new System.Windows.Forms.Label();
             this.dgvCircuito = new System.Windows.Forms.DataGridView();
-            this.iDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.longitudDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.minVelocidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.maxVelocidadDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tramoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.gbCoche = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -110,44 +105,11 @@ namespace FuelOptimizer
             // 
             this.dgvCircuito.AutoGenerateColumns = false;
             this.dgvCircuito.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCircuito.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.iDDataGridViewTextBoxColumn,
-            this.longitudDataGridViewTextBoxColumn,
-            this.minVelocidadDataGridViewTextBoxColumn,
-            this.maxVelocidadDataGridViewTextBoxColumn});
             this.dgvCircuito.DataSource = this.tramoBindingSource;
             this.dgvCircuito.Location = new System.Drawing.Point(6, 19);
             this.dgvCircuito.Name = "dgvCircuito";
             this.dgvCircuito.Size = new System.Drawing.Size(349, 143);
             this.dgvCircuito.TabIndex = 1;
-            // 
-            // iDDataGridViewTextBoxColumn
-            // 
-            this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
-            this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
-            // 
-            // longitudDataGridViewTextBoxColumn
-            // 
-            this.longitudDataGridViewTextBoxColumn.DataPropertyName = "Longitud";
-            this.longitudDataGridViewTextBoxColumn.HeaderText = "Longitud";
-            this.longitudDataGridViewTextBoxColumn.Name = "longitudDataGridViewTextBoxColumn";
-            // 
-            // minVelocidadDataGridViewTextBoxColumn
-            // 
-            this.minVelocidadDataGridViewTextBoxColumn.DataPropertyName = "MinVelocidad";
-            this.minVelocidadDataGridViewTextBoxColumn.HeaderText = "MinVelocidad";
-            this.minVelocidadDataGridViewTextBoxColumn.Name = "minVelocidadDataGridViewTextBoxColumn";
-            // 
-            // maxVelocidadDataGridViewTextBoxColumn
-            // 
-            this.maxVelocidadDataGridViewTextBoxColumn.DataPropertyName = "MaxVelocidad";
-            this.maxVelocidadDataGridViewTextBoxColumn.HeaderText = "MaxVelocidad";
-            this.maxVelocidadDataGridViewTextBoxColumn.Name = "maxVelocidadDataGridViewTextBoxColumn";
-            // 
-            // tramoBindingSource
-            // 
-            this.tramoBindingSource.Position = 0;
             // 
             // gbCoche
             // 
@@ -191,18 +153,16 @@ namespace FuelOptimizer
             this.txtMarcha4Max.Name = "txtMarcha4Max";
             this.txtMarcha4Max.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha4Max.TabIndex = 16;
-            this.txtMarcha4Max.Text = "90";
+            this.txtMarcha4Max.Text = "130";
             this.txtMarcha4Max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMarcha4Max.Leave += new System.EventHandler(this.txtMarcha4Max_TextChanged);
             // 
             // txtMarcha4Min
             // 
             this.txtMarcha4Min.Location = new System.Drawing.Point(398, 85);
             this.txtMarcha4Min.Name = "txtMarcha4Min";
-            this.txtMarcha4Min.ReadOnly = true;
             this.txtMarcha4Min.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha4Min.TabIndex = 15;
-            this.txtMarcha4Min.Text = "76";
+            this.txtMarcha4Min.Text = "40";
             this.txtMarcha4Min.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMarcha3Max
@@ -211,18 +171,16 @@ namespace FuelOptimizer
             this.txtMarcha3Max.Name = "txtMarcha3Max";
             this.txtMarcha3Max.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha3Max.TabIndex = 14;
-            this.txtMarcha3Max.Text = "75";
+            this.txtMarcha3Max.Text = "100";
             this.txtMarcha3Max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMarcha3Max.Leave += new System.EventHandler(this.txtMarcha3Max_TextChanged);
             // 
             // txtMarcha3Min
             // 
             this.txtMarcha3Min.Location = new System.Drawing.Point(398, 27);
             this.txtMarcha3Min.Name = "txtMarcha3Min";
-            this.txtMarcha3Min.ReadOnly = true;
             this.txtMarcha3Min.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha3Min.TabIndex = 13;
-            this.txtMarcha3Min.Text = "51";
+            this.txtMarcha3Min.Text = "25";
             this.txtMarcha3Min.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMarcha5Max
@@ -231,17 +189,16 @@ namespace FuelOptimizer
             this.txtMarcha5Max.Name = "txtMarcha5Max";
             this.txtMarcha5Max.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha5Max.TabIndex = 12;
-            this.txtMarcha5Max.Text = "150";
+            this.txtMarcha5Max.Text = "170";
             this.txtMarcha5Max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMarcha5Min
             // 
             this.txtMarcha5Min.Location = new System.Drawing.Point(399, 139);
             this.txtMarcha5Min.Name = "txtMarcha5Min";
-            this.txtMarcha5Min.ReadOnly = true;
             this.txtMarcha5Min.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha5Min.TabIndex = 11;
-            this.txtMarcha5Min.Text = "91";
+            this.txtMarcha5Min.Text = "60";
             this.txtMarcha5Min.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMarcha2Max
@@ -250,18 +207,16 @@ namespace FuelOptimizer
             this.txtMarcha2Max.Name = "txtMarcha2Max";
             this.txtMarcha2Max.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha2Max.TabIndex = 10;
-            this.txtMarcha2Max.Text = "50";
+            this.txtMarcha2Max.Text = "70";
             this.txtMarcha2Max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMarcha2Max.Leave += new System.EventHandler(this.txtMarcha2Max_TextChanged);
             // 
             // txtMarcha2Min
             // 
             this.txtMarcha2Min.Location = new System.Drawing.Point(81, 85);
             this.txtMarcha2Min.Name = "txtMarcha2Min";
-            this.txtMarcha2Min.ReadOnly = true;
             this.txtMarcha2Min.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha2Min.TabIndex = 9;
-            this.txtMarcha2Min.Text = "21";
+            this.txtMarcha2Min.Text = "15";
             this.txtMarcha2Min.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtMarcha1Max
@@ -270,15 +225,13 @@ namespace FuelOptimizer
             this.txtMarcha1Max.Name = "txtMarcha1Max";
             this.txtMarcha1Max.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha1Max.TabIndex = 8;
-            this.txtMarcha1Max.Text = "20";
+            this.txtMarcha1Max.Text = "15";
             this.txtMarcha1Max.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMarcha1Max.Leave += new System.EventHandler(this.txtMarcha1Max_TextChanged);
             // 
             // txtMarcha1Min
             // 
             this.txtMarcha1Min.Location = new System.Drawing.Point(81, 27);
             this.txtMarcha1Min.Name = "txtMarcha1Min";
-            this.txtMarcha1Min.ReadOnly = true;
             this.txtMarcha1Min.Size = new System.Drawing.Size(100, 20);
             this.txtMarcha1Min.TabIndex = 4;
             this.txtMarcha1Min.Text = "0";
